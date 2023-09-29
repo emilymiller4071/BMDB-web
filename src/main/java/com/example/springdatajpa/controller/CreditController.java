@@ -46,6 +46,28 @@ public class CreditController {
         return credit;
     }
 
+    @GetMapping("/movie/{movieID}")
+    // URL = http://localhost:8080/credits/movie/{movieID}
+    public Credit getByMovieId(@PathVariable int movieID) {
+        Credit credit = creditRepo.findByMovieId(movieID);
+
+        if (credit == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Credit not found.");
+        }
+        return credit;
+    }
+
+    @GetMapping("/actor/{actorID}")
+    // URL = http://localhost:8080/credits/actor/{actorID}
+    public Credit getByActorId(@PathVariable int actorID) {
+        Credit credit = creditRepo.findByActorId(actorID);
+
+        if (credit == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Credit not found.");
+        }
+        return credit;
+    }
+
     // check ActorID and MovieID combo
     @PostMapping("")
     public Credit create(@RequestBody Credit newCredit) {

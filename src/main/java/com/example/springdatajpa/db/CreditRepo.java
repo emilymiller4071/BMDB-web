@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface CreditRepo extends CrudRepository<Credit, Integer> {
 
     Credit findByMovieIdAndActorId(int actorID, int movieID);
+    Credit findByMovieId(int movieID);
+    Credit findByActorId(int actorID);
 
 }
