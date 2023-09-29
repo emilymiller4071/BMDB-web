@@ -19,7 +19,7 @@ public class Actor {
     private String gender;
 
     @OneToMany(mappedBy = "actor")
-    private List<Actor> credits;
+    private List<Credit> credits;
 
     @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate birthDate;

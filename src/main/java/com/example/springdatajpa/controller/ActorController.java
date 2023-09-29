@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -39,18 +40,18 @@ public class ActorController {
         return actor;
     }
 
-//    // NEEDS TESTED ONCE MORE ACTORS AND CREDITS ARE ADDED
-//    @GetMapping("/byMovieTitle")
-//    // URL = http://localhost:8080/actors/byMovieTitle"
-//    public List<Actor> getActorsByMovieTitle(@RequestParam String movieTitle) {
-//        List<Actor> actorsInMovie = actorRepo.getActorsByMovieTitle(movieTitle);
-//
-//        if (actorsInMovie.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor not found.");
-//        }
-//
-//        return actorsInMovie;
-//    }
+//    // NEED HELP WITH THIS ONE!!!
+    @GetMapping("/byMovieTitle")
+    // URL = http://localhost:8080/actors/byMovieTitle"
+    public List<Actor> getActorsByMovieTitle(@RequestParam String movieTitle) {
+        List<Actor> actorsInMovie = actorRepo.findByCreditsMovieTitle(movieTitle);
+
+        if (actorsInMovie.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor not found.");
+        }
+
+        return actorsInMovie;
+    }
 
     @PostMapping("")
     public Actor create(@RequestBody Actor newActor) {

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -48,24 +49,24 @@ public class CreditController {
 
     @GetMapping("/movie/{movieID}")
     // URL = http://localhost:8080/credits/movie/{movieID}
-    public Credit getByMovieId(@PathVariable int movieID) {
-        Credit credit = creditRepo.findByMovieId(movieID);
+    public List<Credit> getByMovieId(@PathVariable int movieID) {
+        List<Credit> credits = creditRepo.findByMovieId(movieID);
 
-        if (credit == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Credit not found.");
+        if (credits.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No credits found for that movie.");
         }
-        return credit;
+        return credits;
     }
 
     @GetMapping("/actor/{actorID}")
     // URL = http://localhost:8080/credits/actor/{actorID}
-    public Credit getByActorId(@PathVariable int actorID) {
-        Credit credit = creditRepo.findByActorId(actorID);
+    public List<Credit> getByActorId(@PathVariable int actorID) {
+        List<Credit> credits = creditRepo.findByActorId(actorID);
 
-        if (credit == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Credit not found.");
+        if (credits.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No credits found for that actor.");
         }
-        return credit;
+        return credits;
     }
 
     // check ActorID and MovieID combo

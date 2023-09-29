@@ -10,10 +10,11 @@ public class Credit {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "movieID")
+    @JoinColumn(name = "MovieID")
     private Movie movie;
 
-    @JoinColumn(name = "actorID")
+    @ManyToOne
+    @JoinColumn(name = "ActorID")
     private Actor actor;
 
     private String role;
