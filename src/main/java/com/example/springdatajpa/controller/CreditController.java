@@ -3,6 +3,7 @@ package com.example.springdatajpa.controller;
 import com.example.springdatajpa.db.ActorRepo;
 import com.example.springdatajpa.db.CreditRepo;
 import com.example.springdatajpa.db.MovieRepo;
+import com.example.springdatajpa.model.Actor;
 import com.example.springdatajpa.model.Credit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/credits")
 // URL = http://localhost:8080/credits
@@ -27,7 +28,10 @@ public class CreditController {
     @Autowired
     CreditRepo creditRepo;
 
-    @GetMapping("/")
+
+    // look into diff between List and Interable
+
+    @GetMapping("")
     // URL = http://localhost:8080/credits/
     public Iterable<Credit> getAll() {
         return creditRepo.findAll();

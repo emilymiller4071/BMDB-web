@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/actors")
 // URL = http://localhost:8080/actors
@@ -20,7 +20,8 @@ public class ActorController {
     @Autowired
     ActorRepo actorRepo;
 
-    @GetMapping("/")
+
+    @GetMapping("")
     // URL = http://localhost:8080/actors/
     public Iterable<Actor> getAll() {
         return actorRepo.findAll();
@@ -40,11 +41,11 @@ public class ActorController {
         return actor;
     }
 
-//    // NEED HELP WITH THIS ONE!!!
-    @GetMapping("/byMovieTitle")
+//    //
+    @GetMapping("/by-movie-title/")
     // URL = http://localhost:8080/actors/byMovieTitle"
-    public List<Actor> getActorsByMovieTitle(@RequestParam String movieTitle) {
-        List<Actor> actorsInMovie = actorRepo.findByCreditsMovieTitle(movieTitle);
+    public List<Actor> getActorsByMovieTitle(@RequestParam String title) {
+        List<Actor> actorsInMovie = actorRepo.findByCreditsMovieTitle(title);
 
         if (actorsInMovie.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor not found.");

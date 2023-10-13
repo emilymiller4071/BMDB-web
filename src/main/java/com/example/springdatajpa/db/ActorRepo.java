@@ -11,5 +11,5 @@ public interface ActorRepo extends CrudRepository<Actor, Integer> {
 
 //    List<Actor> getActorsByMovieTitle(String title);
 Actor findByFirstNameAndLastNameAndBirthDate(String firstName, String lastName, LocalDate birthDate);
-    List<Actor> findByCreditsMovieTitle(String movieTitle);
+    List<Actor> findByCreditsMovieTitle(String title);
 }

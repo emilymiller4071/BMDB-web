@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/movies")
 // URL = http://localhost:8080/movies
@@ -20,8 +20,8 @@ public class MovieController {
     private MovieRepo movieRepo;
 
 
-    @GetMapping("/")
-    // URL = http://localhost:8080/movies/
+    @GetMapping("")
+    // URL = http://localhost:8080/movies
     public Iterable<Movie> getAll() {
         return movieRepo.findAll();
     }
@@ -51,7 +51,7 @@ public class MovieController {
         return moviesByTitle;
     }
 
-    @GetMapping("/director/")
+    @GetMapping("/director")
     // URL = http://localhost:8080/movies/director/
     public List<Movie> getByDirector(@RequestParam String director) {
         List<Movie> moviesByDirector = movieRepo.getByDirector(director);
@@ -62,7 +62,7 @@ public class MovieController {
         return moviesByDirector;
     }
 
-    @GetMapping("/year/")
+    @GetMapping("/year")
     // URL = http://localhost:8080/movies/year/
     public List<Movie> getByYear(@RequestParam int year) {
         List<Movie> moviesByYear = movieRepo.getByYear(year);

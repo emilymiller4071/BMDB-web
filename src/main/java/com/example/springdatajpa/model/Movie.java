@@ -16,8 +16,8 @@ public class Movie {
     private String rating;
     private String director;
 
-    @OneToMany(mappedBy = "movie")
-    private List<Credit> credits;
+//    @OneToMany(mappedBy = "movie")
+//    private List<Credit> credits;
 
     public Movie() {
     }

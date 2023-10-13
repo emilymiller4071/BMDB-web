@@ -18,10 +18,10 @@ public class Actor {
 
     private String gender;
 
+   //  how would I make this work without infinite loop
     @OneToMany(mappedBy = "actor")
     private List<Credit> credits;
 
-    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate birthDate;
 
     public Actor() {
